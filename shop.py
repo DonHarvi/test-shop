@@ -319,7 +319,7 @@ shop_menu = driver.find_element(By.ID, "menu-item-40")
 shop_menu.click()
 
 driver.execute_script("window.scrollBy(0, 300);")
-cart_html5_book  = driver.find_element(By.CSS_SELECTOR, "[data-product_id='182']")
+cart_html5_book  = driver.find_element(By.CSS_SELECTOR, "[data-product_id='165']")
 cart_html5_book.click()
 time.sleep(2)
 cart_btn = driver.find_element(By.CLASS_NAME, "cartcontents")
@@ -328,8 +328,6 @@ cart_btn.click()
 driver.execute_script("window.scrollBy(0, 300);")
 checkout_btn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CLASS_NAME,
                                                                            "checkout-button.button.alt.wc-forward"))).click()
-
-#place_order= WebDriverWait(driver, 100).until(EC.invisibility_of_element((By.ID, "place_order")))
 
 first_name = driver.find_element(By.ID, "billing_first_name")
 first_name.send_keys("Oleg")
@@ -355,10 +353,20 @@ city.send_keys("LA")
 driver.execute_script("window.scrollBy(0, 300);")
 state = driver.find_element(By.ID, "s2id_billing_state").click()
 time.sleep(10)
-state_f = driver.find_element(By.ID, "s2id_autogen7716_search")
+state_f = driver.find_element(By.ID, "s2id_autogen2_search")
 state_f.send_keys("as")
-
 assam = driver.find_element(By.CSS_SELECTOR, ".select2-results > li:nth-child(1)").click()
 time.sleep(5)
+
+zip = driver.find_element(By.ID, "billing_postcode")
+zip.send_keys("1232345")
+
+driver.execute_script("window.scrollBy(0, 600);")
+time.sleep(5)
+check_pay = driver.find_element(By.ID, "payment_method_cheque")
+check_pay.click()
+
+order_btn = driver.find_element(By.ID, "place_order")
+order_btn.click()
 
 driver.quit()
